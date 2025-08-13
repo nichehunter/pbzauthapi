@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  
+  backend:
+    build: .
+    command: >
+      sh -c "python3 manage.py collectstatic --noinput &&
+             python3 manage.py migrate --fake &&
+             python3 manage.py runserver 0.0.0.0:5051"
+    volumes:
+      - .:/pbzAuth
+      - static:/pbzAuth/static/
+      - media:/pbzAuth/media/media/
+    ports:
+      - "5051:5051"
+    restart: unless-stopped
+    networks:
+      - pbz-network
+
+volumes:
+  static: {}
+  media: {}
+networks:
+  pbz-network:
+    external:
+      name: network
