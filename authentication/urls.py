@@ -14,6 +14,7 @@ urlpatterns = [
     # path('user/list', userList.as_view()),
     path('user/<str:email>', getUserByEmail.as_view()),
     path('auth/token', AuthToken.as_view()),
+    path('token/verify', VerifyAuthToken.as_view()),
     path('token/obtain', EmailTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh', TokenRefreshView.as_view(), name='token_refresh'),
     path('send-email', SendEmail.as_view()),

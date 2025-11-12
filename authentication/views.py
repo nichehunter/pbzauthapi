@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework_simplejwt.views import TokenObtainPairView
-from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.tokens import *
 from django.contrib.auth import authenticate
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError as DjangoValidationError
@@ -179,6 +179,20 @@ class AuthToken(CreateAPIView):
                 return Response({"error": "You are not an active user"}, status=status.HTTP_400_BAD_REQUEST)
             return Response({"error": "You are not an active user"}, status=status.HTTP_400_BAD_REQUEST)
         return Response({"error": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class VerifyAuthToken(APIView):
+
+    def post(self, request):
+        token_str = request.data.get("token")
+        if not token_str:
+            return Response({"error": "Token is required"}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            token = AccessToken(token_str)
+            return Response({"valid": True, "exp": token["exp"]}, status=status.HTTP_200_OK)
+        except TokenError as e:
+            return Response({"valid": False, "error": str(e)}, status=status.HTTP_401_UNAUTHORIZED)
 
 
 
