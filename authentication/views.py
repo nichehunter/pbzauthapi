@@ -154,7 +154,7 @@ class AuthToken(CreateAPIView):
                                     'branch_name': hr_data['active_departments'][0]['branch']['branch_name'],
                                     'department_id': hr_data['active_departments'][0]['department']['id'],
                                     'department_name': hr_data['active_departments'][0]['department']['department_name'],
-                                    'position': hr_data['active_departments'][0]['position']['id'],
+                                    'position': (hr_data.get('active_departments', [{}])[0].get('position', {}).get('id', 20)),
                                 }
 
                                 system_data = {
