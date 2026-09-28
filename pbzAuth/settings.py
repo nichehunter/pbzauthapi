@@ -23,109 +23,101 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-fsh=2^4%rjy6j9wij$r+wd3_oe&8y0332nx$nfu)gp^)x4(2%z'
+SECRET_KEY = "django-insecure-fsh=2^4%rjy6j9wij$r+wd3_oe&8y0332nx$nfu)gp^)x4(2%z"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'corsheaders',
-    'rest_framework',
-    'django_filters',
-    'rest_framework_swagger',
-    'django_apscheduler',
-    'authentication',
-    'app',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "corsheaders",
+    "rest_framework",
+    "django_filters",
+    "rest_framework_swagger",
+    "django_apscheduler",
+    "authentication",
+    "app",
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
-ROOT_URLCONF = 'pbzAuth.urls'
+ROOT_URLCONF = "pbzAuth.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
-            'libraries': {
-                'staticfiles': 'django.templatetags.static',
-            }
+            "libraries": {
+                "staticfiles": "django.templatetags.static",
+            },
         },
     },
 ]
 
-WSGI_APPLICATION = 'pbzAuth.wsgi.application'
+WSGI_APPLICATION = "pbzAuth.wsgi.application"
 
 
 AUTH_USER_MODEL = "authentication.AuthUser"
 
-AUTHENTICATION_BACKENDS = ['authentication.auth_backends.AuthBackend']
+AUTHENTICATION_BACKENDS = ["authentication.auth_backends.AuthBackend"]
 
 REST_FRAMEWORK = {
-    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
-
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
-    'EXCEPTION_HANDLER': 'authentication.utils.custom_exception_handler',
-   
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
+    "EXCEPTION_HANDLER": "authentication.utils.custom_exception_handler",
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
-    'REFRESH_TOKEN_LIFETIME': timedelta(minutes=10),
-    'ROTATE_REFRESH_TOKENS': True,
-    'BLACKLIST_AFTER_ROTATION': False,
-    'ALGORITHM': 'HS256',
-    'SIGNING_KEY': SECRET_KEY,
-    'VERIFYING_KEY': None,
-    'AUTH_HEADER_TYPES': ('JWT',),
-    'USER_ID_FIELD': 'id',
-    'USER_ID_CLAIM': 'user_id',
-    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
-    'TOKEN_TYPE_CLAIM': 'token_type',
-    'UPDATE_LAST_LOGIN': True,
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
+    "REFRESH_TOKEN_LIFETIME": timedelta(minutes=10),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": False,
+    "ALGORITHM": "HS256",
+    "SIGNING_KEY": SECRET_KEY,
+    "VERIFYING_KEY": None,
+    "AUTH_HEADER_TYPES": ("Bearer",),
+    "USER_ID_FIELD": "id",
+    "USER_ID_CLAIM": "user_id",
+    "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
+    "TOKEN_TYPE_CLAIM": "token_type",
+    "UPDATE_LAST_LOGIN": True,
 }
 
 SWAGGER_SETTINGS = {
-    'SECURITY_DEFINITIONS': {
-        'basic': {
-            'type': 'apiKey'
-        },
-        'api_key': {
-            'type': 'apiKey',
-            'name': 'Authorization',
-            'in': 'header'
-        }
+    "SECURITY_DEFINITIONS": {
+        "basic": {"type": "apiKey"},
+        "api_key": {"type": "apiKey", "name": "Authorization", "in": "header"},
     }
 }
 
@@ -134,13 +126,13 @@ SWAGGER_SETTINGS = {
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'pbzauth',
-        'USER': 'admin',
-        'PASSWORD': 'pbzadmin',
-        'HOST':'192.168.101.150',
-        'PORT':'5430',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "pbzauth",
+        "USER": "admin",
+        "PASSWORD": "pbzadmin",
+        "HOST": "192.168.101.150",
+        "PORT": "5430",
     }
 }
 
@@ -161,16 +153,16 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
@@ -178,9 +170,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = 'Africa/Nairobi'
+TIME_ZONE = "Africa/Nairobi"
 
 USE_I18N = True
 
@@ -192,53 +184,49 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = "/static/"
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+STATIC_ROOT = os.path.join(BASE_DIR, "static_root")
 
-MEDIA_ROOT = (BASE_DIR)
-
-
-MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR
 
 
+MEDIA_URL = "/media/"
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = '192.168.101.19'  # Replace with the IP address given by your admin
-EMAIL_PORT = 25         # Replace with the port number given by your admin
-EMAIL_USE_TLS = False                        # Enable TLS if required
-EMAIL_USE_SSL = False                       # Use SSL if required instead of TLS
-EMAIL_HOST_USER = 'bankbi@pbzbank.co.tz'    # Your email address
-EMAIL_HOST_PASSWORD = ''                    # Leave blank if no password is required
-DEFAULT_FROM_EMAIL = 'bankbi@pbzbank.co.tz'
+# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# EMAIL_HOST = "192.168.101.19"  # Replace with the IP address given by your admin
+# EMAIL_PORT = 25  # Replace with the port number given by your admin
+# EMAIL_USE_TLS = False  # Enable TLS if required
+# EMAIL_USE_SSL = False  # Use SSL if required instead of TLS
+# EMAIL_HOST_USER = "bankbi@pbzbank.co.tz"  # Your email address
+# EMAIL_HOST_PASSWORD = ""  # Leave blank if no password is required
+# DEFAULT_FROM_EMAIL = "bankbi@pbzbank.co.tz"
 
 
-
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = 'pbzbank@gmail.com'  # Your Gmail address
-# EMAIL_HOST_PASSWORD = 'jjrwexmfxknnpode'    # Your Gmail password or app password
-# DEFAULT_FROM_EMAIL = 'pbzbank@gmail.com'  # Your Gmail address
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "pbzbank@gmail.com"  # Your Gmail address
+EMAIL_HOST_PASSWORD = "jjrwexmfxknnpode"  # Your Gmail password or app password
+DEFAULT_FROM_EMAIL = "pbzbank@gmail.com"  # Your Gmail address
 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000',
-    'http://192.168.101.141',
-    'http://192.168.101.141:80',
-    'http://192.168.101.142',
-    'http://192.168.101.142:80',
-    'http://192.168.101.143',
-    'http://192.168.101.143:80',
-    'http://192.168.101.144',
-    'http://192.168.101.144:80',
-    'http://192.168.101.143:5472'
+    "http://localhost:3000",
+    "http://192.168.101.141",
+    "http://192.168.101.141:80",
+    "http://192.168.101.142",
+    "http://192.168.101.142:80",
+    "http://192.168.101.143",
+    "http://192.168.101.143:80",
+    "http://192.168.101.144",
+    "http://192.168.101.144:80",
+    "http://192.168.101.143:5472",
 ]
-
